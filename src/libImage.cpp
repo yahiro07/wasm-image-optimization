@@ -196,7 +196,27 @@ val optimize(std::string img_in, float width, float height, float quality, std::
     }
 }
 
+int getDimension(std::string img_in) {
+    int orientation = getOrientation(img_in);
+
+    SDL_RWops *rw = SDL_RWFromConstMem(img_in.c_str(), img_in.size());
+    if (!rw) {
+        return -1;
+    }
+
+    SDL_Surface *srcSurface = IMG_Load_RW(rw, 1);
+    SDL_FreeRW(rw);
+    if (!srcSurface) {
+        return -1;
+    }
+
+    int result = (srcSurface->w << 16) | srcSurface->h;
+    SDL_FreeSurface(srcSurface);
+    return result;
+}
+
 EMSCRIPTEN_BINDINGS(my_module)
 {
     function("optimize", &optimize);
+    function("getDimension", &getDimension);
 }
