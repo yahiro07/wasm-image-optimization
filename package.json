@@ -46,11 +46,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "yarn ts-node test",
+    "test": "ts-node test",
     "lint:fix": "eslint --fix src/ && prettier -w src",
     "build": "tsc && tsc -p ./tsconfig.csj.json && cpy esm dist",
     "build:wasm": "docker compose -f docker/docker-compose.yml run --build --rm emcc make -j",
-    "docker:shell": "docker compose -f docker/docker-compose.yml run --build --rm emcc bash -l"
+    "docker:shell": "docker compose -f docker/docker-compose.yml run --build --rm emcc bash -l",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",
@@ -75,5 +76,8 @@
     "WebAssembly"
   ],
   "repository": "https://github.com/node-libraries/wasm-image-optimization",
-  "author": "SoraKumo <info@croud.jp>"
+  "author": "SoraKumo <info@croud.jp>",
+  "files": [
+    "*"
+  ]
 }
