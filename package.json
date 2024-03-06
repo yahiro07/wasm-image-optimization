@@ -51,7 +51,8 @@
     "build": "tsc && tsc -p ./tsconfig.csj.json && cpy esm dist",
     "build:wasm": "docker compose -f docker/docker-compose.yml run --build --rm emcc make -j",
     "docker:shell": "docker compose -f docker/docker-compose.yml run --build --rm emcc bash -l",
-    "postinstall": "npm run build"
+    "build_all": "npm run build && npm run build:wasm",
+    "prepare": "npm run build_all"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",
