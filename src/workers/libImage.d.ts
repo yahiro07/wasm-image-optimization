@@ -6,6 +6,7 @@ export declare type ModuleType = {
     quality: number,
     format: 'jpeg' | 'png' | 'webp'
   ) => Uint8Array | null;
+  getDimension: (data: BufferSource) => number;
 };
 
 declare const imageTools: (options?: {
