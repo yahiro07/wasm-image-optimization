@@ -1,4 +1,4 @@
-import { optimizeImage } from '../dist/cjs';
+import { optimizeImage, getImageDimension } from '../dist/cjs';
 import fs from 'node:fs';
 
 const formats = ['webp', 'jpeg', 'png'] as const;
@@ -17,6 +17,11 @@ const main = async () => {
         }
       });
     }
+  }
+  for (const file of files) {
+    const data = fs.readFileSync(`./images/${file}`);
+    const size = (await getImageDimension(data))!;
+    console.log(file, `${size.width}x${size.height}`);
   }
   for (let i = 0; i <= 8; i++) {
     const data = await fetch(
