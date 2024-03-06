@@ -131,3 +131,14 @@ const config = {
 };
 export default config;
 ```
+
+getImageDimension helper function
+```ts
+  import { getImageDimension } from 'wasm-image-optimization';
+
+  const size = await getImageDimension(srcImage);
+  console.log(size); //such like {width: 1800, height: 1200}
+```
+There is a helper function to get image size for custom resizing process.  
+It just returns the width and height of the source image.
+
